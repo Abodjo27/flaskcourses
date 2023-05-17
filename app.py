@@ -42,4 +42,4 @@ def get_todos():
     return render_template('todos.html', todos=todos, datetime=datetime)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=8010,debug=True)
