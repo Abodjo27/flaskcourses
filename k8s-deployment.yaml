@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskcourse-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: flaskcourse
+  template:
+    metadata:
+      labels:
+        app: flaskcourse
+    spec:
+      containers:
+      - name: flaskcourse
+        image: flaskcourse:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskcourse-service
+spec:
+  selector:
+    app: flaskcourse
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
