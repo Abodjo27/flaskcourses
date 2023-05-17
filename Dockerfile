@@ -10,8 +10,8 @@ ADD . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
+# Make port 8010 available to the world outside this container
+EXPOSE EXPOSE 8010
 
 # Define environment variable
 ENV NAME World
