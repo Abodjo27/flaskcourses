@@ -16,7 +16,7 @@ spec:
       - name: flaskcourse
         image: flaskcourse:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 8010
 ---
 apiVersion: v1
 kind: Service
@@ -28,5 +28,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5000
+      targetPort: 8010
   type: LoadBalancer
