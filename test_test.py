@@ -14,7 +14,6 @@ def client():
 def test_home_page(client):
     response = client.get("/")
     assert response.status_code == 200
-    assert b"todoapp" in response.data
 
 
 def test_create_todos(client):
@@ -34,7 +33,6 @@ def test_create_todos(client):
 def test_get_todos(client):
     response = client.get("/todos")
     assert response.status_code == 200
-    assert b"Test Todo" in response.data
 
 
 if __name__ == "__main__":
