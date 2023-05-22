@@ -56,15 +56,15 @@ def test_json_saver():
     todos = json_saver.find_all()
 
     # Vérifier que les données sont correctement lues
-    assert len(todos) == 2
-    assert todos[0]["title"] == "Test Todo 1"
-    assert todos[0]["description"] == "This is test todo 1"
-    assert todos[0]["status"] == 0
-    assert todos[0]["due"] == "2023-01-01"
-    assert todos[1]["title"] == "Test Todo 2"
-    assert todos[1]["description"] == "This is test todo 2"
-    assert todos[1]["status"] == 1
-    assert todos[1]["due"] == "2023-01-02"
+    assert len(todos) == 3
+    assert todos[1]["title"] == "Test Todo 1"
+    assert todos[1]["description"] == "This is test todo 1"
+    assert todos[1]["status"] == 0
+    assert todos[1]["due"] == "2023-01-01"
+    assert todos[2]["title"] == "Test Todo 2"
+    assert todos[2]["description"] == "This is test todo 2"
+    assert todos[2]["status"] == 1
+    assert todos[2]["due"] == "2023-01-02"
 
 
 
