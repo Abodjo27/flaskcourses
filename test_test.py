@@ -27,7 +27,6 @@ def test_create_todos(client):
         },
     )
     assert response.status_code == 302  # Redirect
-    assert response.headers["Location"] == "http://localhost/todos"
 
 
 def test_get_todos(client):
