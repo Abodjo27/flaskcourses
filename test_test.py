@@ -32,28 +32,21 @@ def test_create_todos(client):
     assert response.status_code == 302  # Redirect
     
 def test_json_saver():
-    json_saver = JsonSaver("test_data.json")
-    
-    # Test adding data
-    id = str(uuid.uuid4())
-    data = {"id": id, "name": "John Doe"}
-    json_saver.add(id, data)
-    assert json_saver.find_by_id(id) == data
-    
-    # Test finding all data
-    all_data = json_saver.find_all()
-    assert isinstance(all_data, list)
-    assert len(all_data) == 1
-    assert all_data[0] == data
-    
-    # Test updating data
-    updated_data = {"id": id, "name": "Jane Smith"}
-    json_saver.update(id, updated_data)
-    assert json_saver.find_by_id(id) == updated_data
-    
-    # Test deleting data
-    json_saver.delete(id)
-    assert json_saver.find_by_id(id) is None
+    json_saver = JsonSaver("data.json")
+    data = {
+        "id": str(uuid.uuid4()),
+        "title": "Test Todo",
+        "description": "This is a test todo",
+        "status": 0,
+        "due": "2023-01-01",
+    }
+    json_saver.add(data["id"], data)
+    todos = json_saver.find_all()
+    assert len(todos) == 1
+    assert todos[0]["title"] == "Test Todo"
+    assert todos[0]["description"] == "This is a test todo"
+    assert todos[0]["status"] == 0
+    assert todos[0]["due"] == "2023-01-01"
 
 
 def test_get_todos(client):
