@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flaskcourse
-        image: flaskcourse:latest
+        image: flaskcourse:34
         ports:
         - containerPort: 8010
 ---
