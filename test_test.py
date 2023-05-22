@@ -1,7 +1,9 @@
 from flask import Flask
+from json_saver import JsonSaver
 import pytest
 
 from app import app
+
 
 
 @pytest.fixture
@@ -27,6 +29,30 @@ def test_create_todos(client):
         },
     )
     assert response.status_code == 302  # Redirect
+    
+def test_json_saver():
+    json_saver = JsonSaver("test_data.json")
+    
+    # Test adding data
+    id = str(uuid.uuid4())
+    data = {"id": id, "name": "John Doe"}
+    json_saver.add(id, data)
+    assert json_saver.find_by_id(id) == data
+    
+    # Test finding all data
+    all_data = json_saver.find_all()
+    assert isinstance(all_data, list)
+    assert len(all_data) == 1
+    assert all_data[0] == data
+    
+    # Test updating data
+    updated_data = {"id": id, "name": "Jane Smith"}
+    json_saver.update(id, updated_data)
+    assert json_saver.find_by_id(id) == updated_data
+    
+    # Test deleting data
+    json_saver.delete(id)
+    assert json_saver.find_by_id(id) is None
 
 
 def test_get_todos(client):
