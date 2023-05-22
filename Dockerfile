@@ -19,11 +19,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copier le code source
 COPY --chown=appuser:appuser assets /app/assets
 COPY --chown=appuser:appuser templates /app/templates
-COPY --chown=appuser:appuser app.py /app/app.py
-RUN chmod a-w /app/app.py
+COPY  app.py /app/app.py
 COPY --chown=appuser:appuser data.json /app/data.json
-COPY --chown=appuser:appuser json_saver.py /app/json_saver.py
-RUN chmod a-w /app/json_saver.py
+COPY json_saver.py /app/json_saver.py
 COPY --chown=appuser:appuser requirements.txt /app/requirements.txt
 
 # Exposer le port 8010
