@@ -1,17 +1,31 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9
+FROM python:3.9-alpine
 
-# Set the working directory in the container to /app
+# Créer un nouvel utilisateur non privilégié
+RUN adduser --disabled-password --gecos "" appuser
+
+# Définir le répertoire de travail et les permissions appropriées
 WORKDIR /app
 
-# Add the current directory contents into the container at /app
-ADD . /app
+RUN chown -R appuser:appuser /app
 
-# Install any needed packages specified in requirements.txt
+# Basculer vers l'utilisateur non privilégié
+USER appuser
+
+# Copier et installer les dépendances
+COPY --chown=appuser:appuser requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Make port 8010 available to the world outside this container
+# Copier le code source
+COPY --chown=appuser:appuser assets /app/assets
+COPY --chown=appuser:appuser templates /app/templates
+COPY --chown=appuser:appuser app.py /app/app.py
+COPY --chown=appuser:appuser data.json /app/data.json
+COPY --chown=appuser:appuser json_saver.py /app/json_saver.py
+COPY --chown=appuser:appuser requirements.txt /app/requirements.txt
+
+# Exposer le port 8010
 EXPOSE 8010
 
-# Run app.py when the container launches
+# Exécuter l'application
 CMD ["python", "app.py"]
