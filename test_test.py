@@ -32,7 +32,7 @@ def test_create_todos(client):
     assert response.status_code == 302  # Redirect
     
 def test_json_saver():
-    json_saver = JsonSaver("test_data.json")
+    json_saver = JsonSaver("test_datas.json")
     # Ajouter des données de test dans le fichier JSON
     data1 = {
         "id": str(uuid.uuid4()),
