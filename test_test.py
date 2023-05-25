@@ -1,8 +1,10 @@
-todos = []
+from test import create, view
 
-def create():
-    todos.append("text")
-    return "ajouté"
+def test_create():
+    assert create() == "ajouté"
+    assert len(view()) == 1
 
-def view():
-    return todos
+def test_view():
+    todos = view()
+    assert len(todos) == 1
+    assert todos[0] == "text"
