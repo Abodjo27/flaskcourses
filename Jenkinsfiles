@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        PATH = "/usr/local/bin:$PATH"
+        PATH = "/usr/AppData/Local/Docker/wsl:$PATH"
     }
     
     stages {
