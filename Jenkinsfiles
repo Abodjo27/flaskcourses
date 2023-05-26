@@ -5,18 +5,18 @@ pipeline {
     }
     
     stages {
-        stage('Install Pip') {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Abodjo27/flaskcourses.git']]])
+            }
+        }
+          stage('Install Pip') {
             steps {
                 container('jenkins-5b548b489c-dk9sr') {
                     // Exécutez la commande d'installation de pip
                     sh 'apk add --no-cache py3-pip' // Exemple pour Alpine Linux
                     // Utilisez la commande appropriée pour votre image de pod
                 }
-            }
-        }
-        stage('Checkout') {
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Abodjo27/flaskcourses.git']]])
             }
         }
         stage('Install dependencies') {
