@@ -1,6 +1,9 @@
 pipeline {
     agent any
-    
+      tools {
+        // Configuration de l'outil pip
+        pip 'pip'
+    } 
     environment {
         PATH = "usr/local/bin:$PATH"
     }
