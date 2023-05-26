@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.11
 
 # Copiez les fichiers de l'application
 COPY . /app
