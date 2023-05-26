@@ -14,12 +14,12 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 git branch: 'main', url: 'https://github.com/Abodjo27/flaskcourses.git'
-                sh 'pip3 install -r requirements.txt'
+                sh 'pip install -r requirements.txt'
             }
         }
         stage('Install corverage') {
             steps {
-                sh 'pip3 install coverage'
+                sh 'pip install coverage'
             }
         }
         stage('Run tests') {
