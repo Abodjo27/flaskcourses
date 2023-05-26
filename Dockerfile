@@ -1,11 +1,16 @@
-FROM python:3.11
+FROM python:3.9
 
-# Copiez les fichiers de l'application
+# Installation de pip
+RUN python -m ensurepip --upgrade
+
+# Copie des fichiers de votre application
 COPY . /app
+
+# Définition du répertoire de travail
 WORKDIR /app
 
-# Installez les dépendances
-RUN pip install --no-cache-dir -r requirements.txt
+# Installation des dépendances avec pip
+RUN pip install -r requirements.txt
 
-# Commande d'exécution de l'application
-CMD ["python", "app.py"]
+# Commande pour démarrer votre application
+CMD [ "python", "app.py" ]
