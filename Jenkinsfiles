@@ -1,7 +1,8 @@
 pipeline {
     agent any
+    
     environment {
-        PATH = "usr/local/bin:$PATH"
+        PATH = "/usr/local/bin:$PATH"
     }
     
     stages {
@@ -9,15 +10,16 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Abodjo27/flaskcourses.git']]])
             }
+        }
         stage('Install dependencies') {
             steps {
                 git branch: 'main', url: 'https://github.com/Abodjo27/flaskcourses.git'
-                sh 'pip install -r requirements.txt'
+                sh 'pip3 install -r requirements.txt'
             }
         }
         stage('Install corverage') {
             steps {
-                sh 'pip install coverage'
+                sh 'pip3 install coverage'
             }
         }
         stage('Run tests') {
