@@ -1,8 +1,9 @@
 pipeline {
-    agent any
-    
-    environment {
-        PATH = "/usr/local/bin:$PATH"
+     agent {
+      docker {
+        image 'python:3'
+        label 'my-build-agent'
+      }
     }
     
     stages {
