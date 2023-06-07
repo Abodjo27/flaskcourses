@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:1.3
+FROM python:3.9
 
 # Créer un nouvel utilisateur non privilégié
 RUN adduser --disabled-password --gecos "" appuser
