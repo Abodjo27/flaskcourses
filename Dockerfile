@@ -14,6 +14,9 @@ USER appuser
 
 # Copier et installer les dépendances
 COPY --chown=appuser:appuser requirements.txt .
+COPY requirements.txt requirements.txt
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copier le code source
