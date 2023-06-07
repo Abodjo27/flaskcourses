@@ -9,11 +9,7 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Abodjo27/flaskcourses.git']]])
             }
         }
-         stage('Installation') {
-            steps {
-                sh 'apt-get update && apt-get install -y python3-pip' // Installation de pip
-            }
-        }
+      
         stage('Install dependencies') {
             steps {
                 git branch: 'main', url: 'https://github.com/Abodjo27/flaskcourses.git'
