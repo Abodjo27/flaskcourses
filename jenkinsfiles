@@ -4,6 +4,12 @@ pipeline {
         PATH = "/usr/local/bin:$PATH"
     }
     stages {
+    
+        stage('Installation') {
+            steps {
+                sh 'apt-get update && apt-get install -y python3-pip' // Installation de pip
+            }
+        }
         stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Abodjo27/flaskcourses.git']]])
