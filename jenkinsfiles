@@ -1,11 +1,5 @@
-pipeline {
-     agent {
-      docker {
-        image 'python:3'
-        label 'my-build-agent'
-      }
-    }
-    
+pipeline {   
+   agent any
     stages {
         stage('Checkout') {
             steps {
